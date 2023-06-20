@@ -249,7 +249,7 @@ const openModal = ref(false)
   right: 0;
   width: 250px;
   display: flex;
-  height: auto;
+  height: -webkit-fill-available;
   flex-direction: column;
   padding: 42px 15px 15px 18px;
   background-color: #262626;
