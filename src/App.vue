@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import Cells from "@/components/CellsComponent.vue";
-import Inventory from "@/components/Inventory.vue";
+import Inventory from "@/components/InventoryComponent.vue";
 import BottomBlock from "@/components/BottomBlock.vue";
 </script>
 

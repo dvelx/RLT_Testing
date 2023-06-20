@@ -31,13 +31,15 @@
 </template>
 
 <script setup lang="ts">
-  import {ref} from "vue";
+import {computed, ref} from "vue";
   import ModalCells from "@/components/ModalCells.vue";
   import {mainStore} from "@/stores/mainStore";
 
   const store = mainStore()
   const cells = store.state.cells
-  const items = store.state.items
+  const items = computed(() => {
+    return store.state.items
+  })
 
   const openModal = ref(false)
   const activeItemId = ref<number>(0)
@@ -50,7 +52,7 @@
   }
   const onDrop = (event: DragEvent, id) => {
     const itemId = parseInt(event.dataTransfer.getData('itemId'))
-    const item  = items.find(item => item.id === itemId)
+    const item  = items.value.find(item => item.id === itemId)
     item.category = id
     localStorage.setItem(String(item.id), String(item.category))
   }
@@ -72,6 +74,7 @@
   position: relative;
   display: grid;
   width: 525px;
+  height: 100%;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(5, 1fr);
   &__droppable {
