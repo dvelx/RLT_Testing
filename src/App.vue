@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <div class="inventory">
-
+      <img src="./assets/images/Img.png" alt="" class="inventory__image">
+      <div class="item">
+        <div class="item__title"></div>
+        <div class="item__descr"></div>
+        <div class="item__descr"></div>
+        <div class="item__descr"></div>
+        <div class="item__descr"></div>
+        <div class="item__descr"></div>
+      </div>
     </div>
     <div class="cells">
       <div class="cells__droppable"
@@ -26,13 +34,19 @@
           v-show="openModal"
           class="cells__modal modal"
           v-for="item in items.filter(x => x.id === activeItemId)"
+          :key="item.id"
       >
         <div class="modal__image">
           <img :src="item.src" alt="s">
         </div>
         <div class="modal__divider"></div>
-        <div class="modal__description">
-
+        <div class="modal__info item">
+          <div class="item__title"></div>
+          <div class="item__descr"></div>
+          <div class="item__descr"></div>
+          <div class="item__descr"></div>
+          <div class="item__descr"></div>
+          <div class="item__descr"></div>
         </div>
         <div class="modal__divider"></div>
         <button class="modal__btn"
@@ -45,6 +59,7 @@
       </div>
     </div>
     <div class="bottom-block">
+      <div class="bottom-block__item"></div>
       <button class="close"></button>
     </div>
   </div>
@@ -120,7 +135,7 @@ const openModal = ref(false)
 .inventory {
   width: 236px;
   background-color: #262626;
-  padding: 18px 14px;
+  padding: 18px 14px 0 14px;
   border: 1px solid #4D4D4D;
   border-radius: 12px;
 }
@@ -132,7 +147,7 @@ const openModal = ref(false)
   grid-template-columns: repeat(5, 1fr);
   &__droppable {
     background-color: #262626;
-    height: 100px;
+
     border: 1px solid #4D4D4D;
     display: flex;
     align-items: center;
@@ -185,6 +200,9 @@ const openModal = ref(false)
 }
 .bottom-block {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 72px;
   padding: 18px;
@@ -192,6 +210,13 @@ const openModal = ref(false)
   border: 1px solid #4D4D4D;
   border-radius: 12px;
   margin-top: 24px;
+
+  &__item {
+    width: 700px;
+    height: 36px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgba(60,60,60,1) 0%, rgba(68,68,68,1) 50%, rgba(51,51,51,1) 100%);
+  }
 }
 .close {
   position: absolute;
@@ -223,8 +248,10 @@ const openModal = ref(false)
   top: 0;
   right: 0;
   width: 250px;
-  height: -webkit-fill-available;
-  padding: 55px 15px 15px 18px;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  padding: 42px 15px 15px 18px;
   background-color: #262626;
   border: 1px solid #4D4D4D;
   border-radius: 0 12px 12px 0;
@@ -243,6 +270,11 @@ const openModal = ref(false)
     background-color: #4D4D4D;
     margin-bottom: 18px;
   }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
   &__btn {
     background-color: #FA7272;
     padding: 11px 55px;
@@ -250,6 +282,32 @@ const openModal = ref(false)
     color: #FFFFFF;
 
     width: 100%;
+  }
+}
+.item {
+  &__title {
+    height: 30px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    background: linear-gradient(90deg, rgba(60,60,60,1) 0%, rgba(68,68,68,1) 50%, rgba(51,51,51,1) 100%);
+  }
+  &__descr {
+    height: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, rgba(60,60,60,1) 0%, rgba(68,68,68,1) 50%, rgba(51,51,51,1) 100%);
+  }
+  &__descr:last-child {
+    margin-bottom: 24px;
+  }
+}
+.inventory {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__image {
+    margin-bottom: 20px;
   }
 }
 
